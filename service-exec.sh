@@ -1,0 +1,1 @@
+cd D:/ICT/Sem3/MSA/Project/services/service-service; mvn clean install; java -Duser.timezone=UTC -jar payara.jar --deploy artifact/service-service.war --port 8087 --addJars postgresql.jar --domainConfig domain.xml

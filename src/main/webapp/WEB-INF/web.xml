@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app version="6.0"
+         xmlns="https://jakarta.ee/xml/ns/jakartaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="https://jakarta.ee/xml/ns/jakartaee
+                             https://jakarta.ee/xml/ns/jakartaee/web-app_6_0.xsd">
+
+    <!-- ===========================================
+    ENABLE MP-JWT SECURITY
+    This is REQUIRED in Payara Micro
+    =========================================== -->
+    <login-config>
+        <auth-method>MP-JWT</auth-method>
+        <realm-name>MP-JWT</realm-name>
+    </login-config>
+
+    <!-- ===========================================
+    SECURE YOUR API ENDPOINTS
+    Change /api/* if your path is different
+    =========================================== -->
+    <security-constraint>
+        <web-resource-collection>
+            <web-resource-name>Protected API</web-resource-name>
+            <url-pattern>/api/*</url-pattern>
+        </web-resource-collection>
+
+        <auth-constraint>
+            <role-name>PLATFORM_ADMIN</role-name>
+            <role-name>ORG_OWNER</role-name>
+            <role-name>ORG_ADMIN</role-name>
+        </auth-constraint>
+    </security-constraint>
+
+    <!-- ===========================================
+    DECLARE ROLES
+    =========================================== -->
+    <security-role>
+        <role-name>PLATFORM_ADMIN</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ORG_OWNER</role-name>
+    </security-role>
+    <security-role>
+        <role-name>ORG_ADMIN</role-name>
+    </security-role>
+
+</web-app>
